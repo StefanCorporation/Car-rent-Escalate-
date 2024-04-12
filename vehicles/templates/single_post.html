@@ -1,6 +1,71 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+
 
 {% block content %}
-<h1>{{ single_posts.model }} ddddddddddddddd</h1>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<div class="bbb_deals_featured">
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex flex-lg-row flex-column align-items-center justify-content-center">
+                <!-- bbb_deals -->
+                <div class="bbb_deals">
+                    <div class="ribbon ribbon-top-right"><span>50% OFF</span></div>
+                    <div class="bbb_deals_title">Today's Best Offer</div>
+                    <div class="bbb_deals_slider_container">
+                        <!-- bbb_deals Item -->
+                        <div class=" bbb_deals_item">
+                            {% if single_post.vehicle_image %}
+                                <div class="bbb_deals_image"><img src={{ single_post.vehicle_image.url }} alt=""></div>
+                            {% else %}
+                                <img src={% static "\image\no.png" %} alt="">
+                            {% endif %}
+                            <div class="bbb_deals_content">
+                                <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                                    <div class="bbb_deals_item_category"><a>Vehicle Mark </a></div>
+                                    <div class="bbb_deals_item_price_a ml-auto">{{ single_post.mark }}</div>
+                                </div>
+                                <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                                    <div class="bbb_deals_item_category"><a>Vehicle Model </a></div>
+                                    <div class="bbb_deals_item_price_a ml-auto">{{ single_post.model }}</div>
+                                </div>
+                                <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                                    <div class="bbb_deals_item_name">Rent price</div>
+                                    <div class="bbb_deals_item_price ml-auto">${{ single_post.price }}</div>
+                                </div>
+                                <div class="available">
+                                    <div class="available_line d-flex flex-row justify-content-start">
+                                        <div class="available_title" {% if single_post.available %} style="color: green;"
+                                        {% else %} style="color: red" {% endif %}>
+                                            Available: <span>{{ single_post.available }}</span></div>
+                                        <div class="sold_title ml-auto">Aleredy at garge: <span>28</span></div>
+                                    </div>
+                                    <div class="available_bar"><span style="width:17%"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Featured -->
+                <div class="card">
+                    <div class="card-header" >Color<h3>{{ single_post.color }}</h3></div>
+                    <div class="card-header">Type<h3>{{ single_post.type }}</h3></div>
+                    <div class="card-header">Engine value<h3>{{ single_post.engine_val }}</h3></div>
+                    <div class="card-header">Year<h3>{{ single_post.year }}</h3></div>
+
+                    <div class="card-body">
+                      <h5 class="card-title">Special title treatment</h5>
+                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

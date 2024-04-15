@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from .models import VehiclesForRent
+from users.models import Users
 
 def home(request):
     vehicles = VehiclesForRent.objects.filter(available=True)

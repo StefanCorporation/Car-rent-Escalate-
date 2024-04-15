@@ -132,3 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Users
 
 AUTH_USER_MODEL = 'users.Users'
+LOGIN_REDIRECT_URL = '/escalate_rent/home/'
+LOGOUT_REDIRECT_URL = '/escalate_rent/home/'

@@ -27,12 +27,29 @@
 				<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
 			</ul>
 			<ul class="givusacall">
-				<li>Give us a call : +66666666 </li>
+				<li>Give us a call : 598-88-88-88  </li>
 			</ul>
+			{% if user.is_authenticated %}
+			
+
+				<ul class="logreg">
+					<li>
+						<form action={% url "users:logout" %} method="post">
+						{% csrf_token %}
+							<button style="background-color: transparent; border: none; color: white;" type="submit">Logout</button>
+						</form>
+					</li>
+				</ul>
+
+				
+
+			{% else %}
 			<ul class="logreg">
-				<li><a href="#">Login </a> </li>
-				<li><a href="#"><span class="register">Register</span></a></li>
+				<li><a href={% url "users:login" %}>Login </a> </li>
+				<li><a href={% url "users:registration" %}><span class="register">Register</span></a></li>
 			</ul>
+			{% endif %}
+
 	</div>
 	<!-- Navbar Up -->
 	<nav class="topnavbar navbar-default topnav">
@@ -49,7 +66,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="upmenu">
 			<ul class="nav navbar-nav" id="navbarontop">
-				<li class="active"><a href="#">HOME</a> </li>
+				<li class="active"><a href={% url "vehicles:home" %}>HOME</a> </li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle"	data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATEGORIES <span class="caret"></span></a>
 					<ul class="dropdown-menu dropdowncostume">
@@ -67,10 +84,35 @@
 						</ul>
 				</li>
 				<li>
-					<a href="contact.html">CONTACT</a>
+					<a href={% url "vehicles:contact" %}>CONTACT</a>
  
 				</li>
-				<button><span class="postnewcar">POST NEW CAR</span></button>
+				{% if user.is_superuser or user.is_staff  %}				
+					<button >
+						<a href={% url "admin:index" %}>
+							<span class="postnewcar">Admin panel</span>
+						</a>
+					</button>
+					<button >
+						<a href={% url "users:profile" user.id %}>
+							<span class="postnewcar">Profile</span>
+						</a>
+					</button>
+
+				{% elif user.is_authenticated %}
+					<button >
+						<a href={% url "users:profile" user.id %}>
+							<span class="postnewcar">Profile</span>
+						</a>
+					</button>
+					
+				{% else %}
+					<button >
+						<a href={% url "users:login" %}>
+							<span class="postnewcar">Profile</span>
+						</a>
+					</button>
+				{% endif %}
 			</ul>
 		</div>
 	</nav>

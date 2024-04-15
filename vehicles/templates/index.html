@@ -151,7 +151,7 @@
 	</div>
 <!-- ________________________LATEST CARS SECTION _______________________-->
 <div class="latestcars">
-	<h1 class="text-center">&bullet; LATEST   CARS &bullet;</h1>
+	<h1 class="text-center">&bullet; LATEST   CARS  FOR RENT&bullet;</h1>
 	<ul class="nav nav-tabs navbar-left latest-navleft">
 		<li role="presentation" class="li-sortby"><span class="sortby">SORT BY: </span></li>
 		<li data-filter=".RECENT" role="presentation"><a href="#mostrecent" class="prcBtnR">MOST RECENT </a></li>
@@ -181,9 +181,12 @@
                         </div>
                         <div class="simpletxt">
                             <h3 class="name">{{ vehicle.mark }} {{ vehicle.model }}</h3>
-                            <p>"{{ vehicle.about_vehicle }}" </p>
+                            <p>"{{ vehicle.title|truncatechars:70 }}" </p>
                             <h4 class="price">{{ vehicle.price }} &euro;</h4>
-                            <button>READ MORE</button><br>
+							<button type="button" class="btn btn-outline-secondary">
+								<a href={% url "vehicles:single_post" vehicle.id %}>Read more</a>
+							</button>
+                        
                             <div class="wishtxt">
                                 <p class="paragraph1"> Add to Wishlist <span class="glyphicon glyphicon-heart"></span> </p>
                                 <p class="paragraph2">Compare <span class="icon"><img src={% static "image/compicon.png" %} alt="compicon"></span></p>
@@ -236,5 +239,15 @@
 			<a href="#"><i class="fa fa-twitter"></i></a>
 			<a href="#"><i class="fa fa-google-plus"></i></a>
 			<a href="#"><i class="fa fa-pinterest"></i></a>
+		</div>
+
+
+		<div class="footer">
+			<div class="copyright">
+				&copy; Copy right 2016 | <a href="#">Privacy </a>| <a href="#">Policy</a>
+			</div>
+			<div class="atisda">
+				 Designed by <a href="http://www.webdomus.net/">Web Domus Italia - Web Agency </a> 
+			</div>
 		</div>
 {% endblock %}

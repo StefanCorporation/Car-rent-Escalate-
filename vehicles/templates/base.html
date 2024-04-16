@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href={% static "source/bootstrap-3.3.6-dist/css/bootstrap.css" %}>
 	<link rel="stylesheet" type="text/css" href={% static "source/font-awesome-4.5.0/css/font-awesome.css" %}>
-	<link rel="stylesheet" type="text/css" href={% static "style/slider.css" %}>
+	{% comment %} <link rel="stylesheet" type="text/css" href={% static "style/slider.css" %}> {% endcomment %}
 	<link rel="stylesheet" type="text/css" href={% static "style/mystyle.css" %}>
 	
 </head>
@@ -38,18 +38,15 @@
 						{% csrf_token %}
 							<button style="background-color: transparent; border: none; color: white;" type="submit">Logout</button>
 						</form>
+						<li><ul style="margin-left: 135px;">{{ user.username }}</ul></li>
 					</li>
-				</ul>
-
-				
-
+				</ul>				
 			{% else %}
-			<ul class="logreg">
-				<li><a href={% url "users:login" %}>Login </a> </li>
-				<li><a href={% url "users:registration" %}><span class="register">Register</span></a></li>
-			</ul>
-			{% endif %}
-
+				<ul class="logreg">
+					<li><a href={% url "users:login" %}>Login </a> </li>
+					<li><a href={% url "users:registration" %}><span class="register">Register</span></a></li>	
+				</ul>
+			{% endif %}						
 	</div>
 	<!-- Navbar Up -->
 	<nav class="topnavbar navbar-default topnav">

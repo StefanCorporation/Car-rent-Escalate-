@@ -9,6 +9,8 @@ class VehiclesForRent(models.Model):
     color = models.CharField(max_length=65, blank=True)
     type = models.CharField(max_length=15, blank=True)
     engine_val = models.FloatField(blank=True, default=0.0)
+    fuel_type = models.CharField(max_length=25, blank=True)
+    gear_box = models.CharField(max_length=25, blank=True)
     year = models.IntegerField(blank=True, default=0)
     title = models.CharField(max_length=255, blank=True)
     about_vehicle = models.TextField(blank=True)

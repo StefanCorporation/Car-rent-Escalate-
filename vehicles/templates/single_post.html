@@ -6,9 +6,14 @@
 
 {% block content %}
 
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+
 <div class="bbb_deals_featured">
     <div class="container">
         <div class="row">
@@ -26,7 +31,7 @@
                             {% else %}
                                 <img src={% static "\image\no.png" %} alt="">
                             {% endif %}
-                            <div class="bbb_deals_content">
+                            <div class="bbb_deals_content" >
                                 <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
                                     <div class="bbb_deals_item_category"><a>Vehicle Mark </a></div>
                                     <div class="bbb_deals_item_price_a ml-auto">{{ single_post.mark }}</div>
@@ -53,35 +58,146 @@
                     </div>
                 </div> <!-- Featured -->
                 <div class="card">
-                    <div class="card-header" >Color<h3>{{ single_post.color }}</h3></div>
-                    <div class="card-header">Type<h3>{{ single_post.type }}</h3></div>
-                    <div class="card-header">Engine value<h3>{{ single_post.engine_val }}</h3></div>
-                    <div class="card-header">Year<h3>{{ single_post.year }}</h3></div>
-
-                    <div class="card-body">
-                      <h5 class="card-title">For rent click bellow</h5>
-                      <p class="card-text">{{ single_post.title|truncatechars:70 }}</p>
-                      <a href="#" class="btn btn-primary">Rent</a>
-                    </div>
-                </div>
+                    <div class="card-header">Color<h3>{{ single_post.color }} <img src={% static "svg\color.svg" %} alt=""></h3></div>
+                    <div class="card-header">Type<h3>{{ single_post.type }} <img src={% static "svg\classic.svg" %} alt=""></h3></div>
+                    <div class="card-header">Engine value<h3>{{ single_post.engine_val }} <img src={% static "svg\engine.svg" %} alt=""></h3></div>
+                    <div class="card-header">Fuel type <h3>{{ single_post.fuel_type }} <img src={% static "svg\fuel.svg" %} alt=""></h3></div>
+                    <div class="card-header">Gear box <h3>{{ single_post.gear_box }} <img src={% static "svg\gear_box.svg" %} alt=""></h3></div>
+                    <div class="card-header">Year<h3>{{ single_post.year }} <img src={% static "svg\year.svg" %} alt=""></h3></div>
                 <!--end-->
-                
-
-                
+                                
             </div>
         </div>
     </div>
-
 </div>
+
+<div class="container" style="margin-bottom: 50px;">
+  <div class="text-bg-warning p-3"  style="font-family: 'Brush Script MT', cursive;"><h1>{{ single_post.title }}</h1></div>
+</div>
+
+
+<div class="container" style="margin-bottom: 5px;">
+  <div class="card" style="color: #C59E47">
+    <h1 class="card-header">Rent form: <img src={% static "\svg\key.svg" %}></h1>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+      <form>    
+          <!-- Username input -->
+          <div data-mdb-input-init class="form-outline">
+            <label class="form-label" for="form8Example1">Username <img src={% static "\svg\user.svg" %} alt=""></label>
+            <input type="text" id="form8Example1" class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <!-- Email input -->
+          <div data-mdb-input-init class="form-outline" style="margin-bottom: 10px;">
+            <label class="form-label" for="form8Example2">Email address <img src={% static "\svg\email.svg" %} alt=""></label>
+            <input type="email" id="form8Example2" class="form-control" />
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col">
+          <!-- Name input -->
+          <div data-mdb-input-init class="form-outline">
+            <label class="form-label" for="form8Example3">First name <img src={% static "\svg\first.svg" %}></label>
+            <input type="text" id="form8Example3" class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <!-- Name input -->
+          <div data-mdb-input-init class="form-outline">
+            <label class="form-label" for="form8Example4">Last name <img src={% static "\svg\first.svg" %}></label>
+            <input type="text" id="form8Example4" class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <!-- Phone input -->
+          <div data-mdb-input-init class="form-outline">
+            <label class="form-label" for="form8Example5">Phone <img src={% static "\svg\phone.svg" %}></label>
+            <input type="email" id="form8Example5" class="form-control" />
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <label for="validationDefault04" class="form-label">Car pick up location <img src={% static "\svg\location1.svg" %}></label>
+          <select class="form-select" id="validationDefault04" required>
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+
+        <div class="col-md-3" style="margin-bottom: 20px;">
+          <label for="validationDefault04" class="form-label">Where will you leave the car <img src={% static "\svg\location2.svg" %}></label>
+          <select class="form-select" id="validationDefault04" required>
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+
+      <br></br> 
+      
+        <div style="margin-bottom: 5px;">        
+          <p style="display: inline-block; margin-right: 10px;">
+            <label for="pick_up_time">Car pick up time:</label>
+            <input type="time" id="pick_up_time" name="pick_up_time">
+          </p>
+          <p style="display: inline-block;">
+            <label for="return_time">Car return time:</label>
+            <input type="time" id="return_time" name="return_time">
+          </p>
+        </div>
+
+        <div class="col-md-3">
+          <p>
+            <label for="date">Car pick up date </label>
+          </br>
+            <input type="date" id="date" name="date"/  style="width: 200px; height: 25px; padding: 5px;">
+          </p>
+        </div>
+
+        <div class="col-md-3">
+          <p>
+            <label for="date">Car return date </label>
+          </br>
+            <input type="date" id="date" name="date"/  style="width: 200px; height: 25px; padding: 5px;">
+          </p>
+        </div>
+        <div>
+
+        <div class="d-grid gap-2">
+            <button class="btn btn-outline-warning" type="button" style="color: #C59E47">Book now</button>
+        </div>
+
+      </form> 
+
+      </div>
+    </div>
+  </div>
+</div >
+
+<div style="margin-bottom: 50px;"></div>
+
+
+<div class="container">
 <div class="card">
-    <div class="card-header">
+    <div class="card-header" style="color: #C59E47" >
       <h2>ABOUT: </h2>
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
-        <p>{{ single_post.about_vehicle }}</p>
+        <p style="color: #C59E47">{{ single_post.about_vehicle }}</p>
         <footer class="blockquote-footer">Best clasic cars in <cite title="Source Title">Escalate rent garage</cite></footer>
       </blockquote>
     </div>
   </div>
+</div>
+
+<div style="margin-bottom: 50px;"></div>
+
 {% endblock %}
+
+
+

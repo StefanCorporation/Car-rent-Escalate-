@@ -82,18 +82,21 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-      <form>    
+    
+          <!--- РОРОБУЙ ДОБАВИТЬ ЕЩЕ ОДНУ ФОРМУ ПОТОМУ ЧТО МЫ СДЕСЬ АЙДИ ПОЛЬЗОВАТЕЛЬЯ ТОЛЬКО ПОЛУЧАЕМ А НАМ АЙДИ ТАЧКИ НАДО-->
+      <form action={% url "users:rent" single_post.id %} method="post">    
           <!-- Username input -->
+          {% csrf_token %}
           <div data-mdb-input-init class="form-outline">
-            <label class="form-label" for="form8Example1">Username <img src={% static "\svg\user.svg" %} alt=""></label>
-            <input type="text" id="form8Example1" class="form-control" />
+            <label class="form-label" for={{ form.username.id_for_label }}>Username <img src={% static "\svg\user.svg" %} alt=""></label>
+            {{ form.username }}
           </div>
         </div>
         <div class="col">
           <!-- Email input -->
           <div data-mdb-input-init class="form-outline" style="margin-bottom: 10px;">
-            <label class="form-label" for="form8Example2">Email address <img src={% static "\svg\email.svg" %} alt=""></label>
-            <input type="email" id="form8Example2" class="form-control" />
+            <label class="form-label" for={{ form.email.id_for_label }}>Email address <img src={% static "\svg\email.svg" %} alt=""></label>
+            {{ form.email }}
           </div>
         </div>
       </div>
@@ -102,73 +105,67 @@
         <div class="col">
           <!-- Name input -->
           <div data-mdb-input-init class="form-outline">
-            <label class="form-label" for="form8Example3">First name <img src={% static "\svg\first.svg" %}></label>
-            <input type="text" id="form8Example3" class="form-control" />
+            <label class="form-label" for={{ form.first_name.id_for_label }}>First name <img src={% static "\svg\first.svg" %}></label>
+            {{ form.first_name }}
           </div>
         </div>
         <div class="col">
           <!-- Name input -->
           <div data-mdb-input-init class="form-outline">
-            <label class="form-label" for="form8Example4">Last name <img src={% static "\svg\first.svg" %}></label>
-            <input type="text" id="form8Example4" class="form-control" />
+            <label class="form-label" for={{ form.last_name.id_for_label }}>Last name <img src={% static "\svg\first.svg" %}></label>
+            {{ form.last_name }}
           </div>
         </div>
         <div class="col">
           <!-- Phone input -->
           <div data-mdb-input-init class="form-outline">
-            <label class="form-label" for="form8Example5">Phone <img src={% static "\svg\phone.svg" %}></label>
-            <input type="email" id="form8Example5" class="form-control" />
+            <label class="form-label" for={{ form.phone.id_for_label }}>Phone <img src={% static "\svg\phone.svg" %}></label>
+            {{ form.phone }}
           </div>
         </div>
-        
+      
         <div class="col-md-3">
           <label for="validationDefault04" class="form-label">Car pick up location <img src={% static "\svg\location1.svg" %}></label>
-          <select class="form-select" id="validationDefault04" required>
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
-          </select>
+          {{ form.pick_up_location }}
         </div>
 
         <div class="col-md-3" style="margin-bottom: 20px;">
           <label for="validationDefault04" class="form-label">Where will you leave the car <img src={% static "\svg\location2.svg" %}></label>
-          <select class="form-select" id="validationDefault04" required>
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
-          </select>
+          {{ form.leave_car_location }}
         </div>
 
       <br></br> 
       
         <div style="margin-bottom: 5px;">        
           <p style="display: inline-block; margin-right: 10px;">
-            <label for="pick_up_time">Car pick up time:</label>
-            <input type="time" id="pick_up_time" name="pick_up_time">
+            <label for={{ form.pick_up_time.id_for_label }}>Car pick up time:</label>
+            {{ form.pick_up_time }}
           </p>
           <p style="display: inline-block;">
-            <label for="return_time">Car return time:</label>
-            <input type="time" id="return_time" name="return_time">
+            <label for={{ form.return_time.id_for_label }}>Car return time:</label>
+            {{ form.return_time }}
           </p>
         </div>
 
         <div class="col-md-3">
           <p>
-            <label for="date">Car pick up date </label>
+            <label for={{ form.pick_up_date.id_for_label }}>Car pick up date </label>
           </br>
-            <input type="date" id="date" name="date"/  style="width: 200px; height: 25px; padding: 5px;">
+            {{ form.pick_up_date }}
           </p>
         </div>
 
         <div class="col-md-3">
           <p>
-            <label for="date">Car return date </label>
+            <label for={{ form.car_return_date.id_for_label }}>Car return date </label>
           </br>
-            <input type="date" id="date" name="date"/  style="width: 200px; height: 25px; padding: 5px;">
+            {{ form.car_return_date }}
           </p>
         </div>
         <div>
 
         <div class="d-grid gap-2">
-            <button class="btn btn-outline-warning" type="button" style="color: #C59E47">Book now</button>
+            <button class="btn btn-outline-warning" type="submit" style="color: #C59E47">Book now</button>
         </div>
 
       </form> 

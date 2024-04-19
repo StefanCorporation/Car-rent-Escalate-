@@ -184,7 +184,8 @@
                             <p>"{{ vehicle.title|truncatechars:70 }}" </p>
                             <h4 class="price">{{ vehicle.price }} &euro;</h4>
 							<button type="button" class="btn btn-outline-secondary">
-								<a href={% url "vehicles:single_post" vehicle.id %}>Read more</a>
+								<a href={% if user.is_authenticated %}{% url "users:rent" vehicle.id %}
+								  {% else %} {% url 'users:login' %} {% endif %}>Read more</a>
 							</button>
                         
                             <div class="wishtxt">
@@ -250,4 +251,6 @@
 				 Designed by <a href="http://www.webdomus.net/">Web Domus Italia - Web Agency </a> 
 			</div>
 		</div>
+
+		
 {% endblock %}

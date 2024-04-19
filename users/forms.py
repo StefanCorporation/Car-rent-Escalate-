@@ -1,9 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm, UserCreationForm)
+from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm, UserCreationForm,)
 from django.contrib.auth import get_user_model
 
 
-from users.models import Users
+from users.models import Users, RentData
 
 
 
@@ -62,4 +62,68 @@ class UserProfileForm(UserChangeForm):
     class Meta:
         model = Users
         fields = ['first_name', 'last_name', 'image', 'username', 'email']
+    
+
+
+
+
+class RentDataForm(forms.ModelForm):
+    
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    phone = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+
+    pick_up_location = forms.ChoiceField(
+        choices=[('tbilisi', 'Tbilisi'), ('batumi', 'Batumi'), ('kutaisi', 'Kutaisi')],
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+
+    leave_car_location = forms.ChoiceField(
+        choices=[('tbilisi', 'Tbilisi'), ('batumi', 'Batumi'), ('kutaisi', 'Kutaisi')],
+        widget=forms.Select(attrs={'class': 'form-control'})           
+    )
+
+    pick_up_time = forms.TimeField(widget=forms.TimeInput(attrs={
+        'class': 'form-control',
+        'type': 'time',
+        'id': 'pick_up_time',
+        'name': 'pick_up_time',
+    }))
+
+    return_time = forms.TimeField(widget=forms.TimeInput(attrs={
+        'class': 'form-control',
+        'type': 'time',
+        'id': 'return_time',
+        'name': 'return_time',     
+    }))
+    
+    pick_up_date = forms.DateField(widget=forms.DateInput(attrs={
+        'class': 'form-control',
+        'type': 'date',
+        'id': 'date',
+        'name': 'date',
+        'style': 'width: 200px; height: 25px; padding: 5px;'
+    }))
+
+    car_return_date = forms.DateField(widget=forms.DateInput(attrs={
+        'class': 'form-control',
+        'type': 'date',
+        'id': 'date',
+        'name': 'date',
+        'style': 'width: 200px; height: 25px; padding: 5px;'
+    }))
+
+
+    class Meta:
+        model = RentData
+        fields = [
+            'username', 'email', 'first_name', 'last_name', 'phone', 'pick_up_location', 
+            'leave_car_location', 'pick_up_time', 'return_time', 'pick_up_date', 'car_return_date', 
+        ]
+
+
+
+
     

@@ -1,8 +1,8 @@
 from typing import Any
-from django.db.models.query import QuerySet
-from django.shortcuts import render, get_object_or_404
+
+from django.shortcuts import render
 from django.views.generic import ListView, TemplateView, DetailView
-from django.views.generic.edit import CreateView, UpdateView
+
 
 
 from .models import VehiclesForRent
@@ -27,10 +27,6 @@ def contact(request):
 
 
 
-# def single_post(request, post_id):
-#     post = get_object_or_404(VehiclesForRent, pk=post_id)
-
-#     return render(request, 'single_post.html', {'single_post': post})
 
 
 

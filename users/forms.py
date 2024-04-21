@@ -3,7 +3,7 @@ from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm, UserC
 from django.contrib.auth import get_user_model
 
 
-from users.models import Users, RentData
+from users.models import Users, RentData, PaymentData
 
 
 
@@ -125,5 +125,43 @@ class RentDataForm(forms.ModelForm):
 
 
 
+class PaymentForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'type': 'text',
+        'name': 'name',
+        'placeholder': 'Name',
+        'size': '15'
+    }))
 
-    
+    card_number = forms.IntegerField(widget=forms.NumberInput(attrs={
+        'type': 'text',
+        'name': 'card-num',
+        'placeholder': '0000 0000 0000 0000',
+        'size': '18', 
+        'id': 'cr_no',
+        'minlength': '19', 
+        'maxlength': '19'
+    }))
+
+    expiry_date = forms.IntegerField(widget=forms.NumberInput(attrs={
+        'type': 'text',
+        'name': 'exp',
+        'placeholder': 'MM/YY', 
+        'size': '6',
+        'id': 'exp',
+        'minlength': '5', 
+        'maxlength': '5'
+    }))
+
+    cvv_cvc = forms.IntegerField(widget=forms.NumberInput(attrs={
+        'type': 'password',
+        'name': 'cvv', 
+        'placeholder': '000',
+        'size': '1', 
+        'minlength': '3',
+        'maxlength': '3'
+    }))
+
+    class Meta:
+        model = PaymentData
+        fields = ['name', 'card_number', 'expry_date', 'cvv_cvc']

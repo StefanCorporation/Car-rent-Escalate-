@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+<link rel="stylesheet" href={% static "style\profile.css" %}>
 
 
 <div class="container rounded bg-white mt-5 mb-5" style="color: #C59E47">
@@ -75,42 +76,75 @@
 </div>
 </div>
 
+<div class="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
+    <h2>Rent checks: {{ rent_data.count }}</h2> 
+</div>
 
+
+{% for data in rent_data %}
 <div class="card">
-    <div class="card-header" style="color: #C59E47">
-      <h2>Rent checks</h2>
-    </div>
-    <div class="card-body">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider" >
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-  </div>
+    <div class="card-body" style="color: #C59E47">  
 
+        <div class="vehicle_img">
+            <img src={{ data.vehicle_for_rent.vehicle_image.url }} width="180px" class="img-thumbnail" alt="...">
+        </div>
+            
+     
+        <img src={% if data.vehicle_for_rent.logo %}
+            {{ data.vehicle_for_rent.logo.url }} {% else %} {% static  "image\no.png" %} 
+               {% endif %} width="180px" class="rounded float-end" alt="...">
+
+
+        <div class="inline-div">
+            <h4><img src={% static "svg\log.svg" %} alt=""> Mark: <span>{{ data.vehicle_for_rent.mark }}</span></h4>
+            <h4><img src={% static "svg\mol.svg" %} alt=""> Model: <span>{{ data.vehicle_for_rent.model }}</span></h4>
+            <h4><img src={% static "svg\color.svg" %} alt=""> Color: <span>{{ data.vehicle_for_rent.color }}</span></h4>
+            <h4><img src={% static "svg\classic.svg" %} alt=""> Type: <span>{{ data.vehicle_for_rent.type }}</span></h4>
+            <h4><img src={% static "svg\engine.svg" %} alt=""> Engine val: <span>{{ data.vehicle_for_rent.engine_val }}</span></h4>
+            <h4><img src={% static "svg\fuel.svg" %} alt=""> Fuel type: <span>{{ data.vehicle_for_rent.fuel_type }}</span></h4>
+            <h4><img src={% static "svg\gear_box.svg" %} alt=""> Gear box: <span>{{ data.vehicle_for_rent.gear_box }}</span></h4>
+            <h4><img src={% static "svg\year.svg" %} alt=""> Year: <span>{{ data.vehicle_for_rent.year }}</span></h4>              
+        </div>
+
+
+        <div class="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" style="color: #C59E47" >Username <img src={% static "\svg\user.svg" %}></th>
+                    <th scope="col" style="color: #C59E47" >First name <img src={% static "\svg\first.svg" %}> </th>
+                    <th scope="col" style="color: #C59E47">Last name <img src={% static "\svg\first.svg" %}> </th>
+                    <th scope="col" style="color: #C59E47">Emal <img src={% static "\svg\email.svg" %} alt=""></th>
+                    <th scope="col" style="color: #C59E47">Phone <img src={% static "\svg\phone.svg" %}> </th>
+                    <th scope="col" style="color: #C59E47">Pick up location <img src={% static "\svg\location1.svg" %}> </th>
+                    <th scope="col" style="color: #C59E47">Car leave location <img src={% static "\svg\location2.svg" %}></th>
+                    <th scope="col" style="color: #C59E47">Pick up time <img src={% static "svg\clock.svg" %}></th>
+                    <th scope="col" style="color: #C59E47">Return time <img src={% static "svg\clock.svg" %}></th>
+                    <th scope="col" style="color: #C59E47">Pick up date <img src={% static "svg\calendar.svg" %}></th>
+                    <th scope="col" style="color: #C59E47">Return date <img src={% static "svg\calendar.svg" %}></th>
+                    <th scope="col" style="color: #C59E47">Created at <img src={% static "svg\created_at.svg" %}></th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr>
+                    <th scope="row">{{ data.username }}</th>
+                    <td>{{ data.first_name }}</td>
+                    <td>{{ data.last_name }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ data.phone }}</td>
+                    <td>{{ data.pick_up_location.title }}</td>
+                    <td>{{ data.leave_car_location.title }}</td>
+                    <td>{{ data.pick_up_time }}</td>
+                    <td>{{ data.return_time }}</td>
+                    <td>{{ data.pick_up_date }}</td>
+                    <td>{{ data.car_return_date }}</td>
+                    <td>{{ data.created_at }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

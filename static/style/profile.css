@@ -1,0 +1,17 @@
+.inline-div {
+    display: inline-block;
+    margin-right: 0px; 
+    vertical-align: top;
+}
+
+
+.vehicle_img {
+    display: inline-block;
+    margin-right: 10px; 
+    vertical-align: top;
+}
+
+.cursive {
+    font-family: 'Brush Script MT', cursive;
+}
+

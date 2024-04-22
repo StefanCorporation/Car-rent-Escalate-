@@ -17,6 +17,12 @@ class UserProfileView(UpdateView):
     template_name = 'profile.html'
     form_class = UserProfileForm
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        rent_data = RentData.objects.filter(user_id=self.request.user.id, paid=True).order_by('-created_at')
+        context['rent_data'] = rent_data
+        return context
+
     def get_success_url(self):
         return reverse_lazy('users:profile', args=(self.object.id,))
 
@@ -31,7 +37,7 @@ class UserLoginView(LoginView):
     template_name = 'login.html'
     form_class = UserLoginForm
    
-   
+
 class RentView(CreateView):
     model = RentData
     template_name = 'single_post.html'

@@ -126,6 +126,7 @@
                     <th scope="col" style="color: #C59E47">Pick up date <img src={% static "svg\calendar.svg" %}></th>
                     <th scope="col" style="color: #C59E47">Return date <img src={% static "svg\calendar.svg" %}></th>
                     <th scope="col" style="color: #C59E47">Created at <img src={% static "svg\created_at.svg" %}></th>
+                    <th scope="col" style="color: #C59E47">Total amount <img src={% static "svg\dollar.svg" %}></th>
                   </tr>
                 </thead>
                 <tbody >
@@ -142,6 +143,7 @@
                     <td>{{ data.pick_up_date }}</td>
                     <td>{{ data.car_return_date }}</td>
                     <td>{{ data.created_at }}</td>
+                    <td>{{ data.vehicle_for_rent.price }}</td>
                   </tr>
                 </tbody>
               </table>

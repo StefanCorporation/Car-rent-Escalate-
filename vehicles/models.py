@@ -21,4 +21,4 @@ class VehiclesForRent(models.Model):
     
 
     def __str__(self) -> str:
-        return f"Mark: {self.mark}. | Model: {self.model}."
+        return f"Mark: {self.mark}. | Model: {self.model}. | ID: {self.id}"

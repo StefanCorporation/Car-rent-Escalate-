@@ -7,6 +7,9 @@ from vehicles.models import VehiclesForRent
 
 class Users(AbstractUser):
     image = models.ImageField(upload_to='users_profile_images', null=True, blank=True)
+
+    def __str__(self):
+        return f"User: {self.username} | ID: {self.id}"
     
 
 
@@ -28,7 +31,7 @@ class RentData(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"Rent check for {self.user.username}"
+        return f"Rent check for {self.user.username} | ID: {self.id}"
     
 
 class PaymentData(models.Model): 
@@ -37,9 +40,10 @@ class PaymentData(models.Model):
     card_number = models.IntegerField(null=True, blank=True)
     expry_date = models.IntegerField(null=True, blank=True)
     cvv_cvc = models.IntegerField(null=True, blank=True)
+    payment_amount = models.FloatField(null=True, blank=True)
     paid_true = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"Payment: {self.name}"
+        return f"Payment: {self.name} : ID: {self.id}"
     

@@ -26,3 +26,14 @@ class RentDataViewSet(ModelViewSet):
 class PaymentDataViewSet(ModelViewSet):
     queryset = PaymentData.objects.all()
     serializer_class = PaymentSerializer
+
+    def perform_create(self, serializer):
+        payment_data = serializer.save()
+        print(self.request)
+        rent_data_id = self.request.data.get('rent_data') 
+        print(rent_data_id)
+
+        rent_data = RentData.objects.get(pk=rent_data_id)
+        
+        rent_data.paid = True
+        rent_data.save()

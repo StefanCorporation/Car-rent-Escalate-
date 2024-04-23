@@ -74,14 +74,16 @@ class PaymentView(TitleMxin, CreateView):
     def form_valid(self, form):
         payment_data = form.save(commit=False)
         user_id = self.request.user.id
-        rent_data = RentData.objects.filter(user_id=user_id).latest('created_at') 
-
-    
+        rent_data = RentData.objects.filter(user_id=user_id).latest('created_at')     
+        
+        payment_data.payment_amount = rent_data.vehicle_for_rent.price
         payment_data.rent_data = rent_data
         payment_data.save()
 
         rent_data.paid = True
         rent_data.save()
+
+
 
         return super().form_valid(form)
 

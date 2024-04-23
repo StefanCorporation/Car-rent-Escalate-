@@ -4,18 +4,16 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
 
 
-
-
-
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm, RentDataForm, PaymentForm
 from .models import Users, RentData, PaymentData
 from vehicles.models import VehiclesForRent
+from common.views import TitleMxin
 
-
-class UserProfileView(UpdateView):
+class UserProfileView(TitleMxin, UpdateView):
     model = Users
     template_name = 'profile.html'
     form_class = UserProfileForm
+    title = 'Profile'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,21 +25,24 @@ class UserProfileView(UpdateView):
         return reverse_lazy('users:profile', args=(self.object.id,))
 
 
-class UserRegistrationView(CreateView):
+class UserRegistrationView(TitleMxin, CreateView):
     form_class = UserRegistrationForm
     template_name = 'registration.html'
     success_url = reverse_lazy('users:login')
+    title = 'Registration'
  
 
-class UserLoginView(LoginView):
+class UserLoginView(TitleMxin, LoginView):
     template_name = 'login.html'
     form_class = UserLoginForm
+    title = 'Login'
    
 
-class RentView(CreateView):
+class RentView(TitleMxin, CreateView):
     model = RentData
     template_name = 'single_post.html'
     form_class = RentDataForm
+    title = 'Rent Form'
  
 
     def get_context_data(self, **kwargs):
@@ -62,11 +63,12 @@ class RentView(CreateView):
         return reverse_lazy('users:payment', kwargs={'user_id': self.request.user.id})
 
 
-class PaymentView(CreateView):
+class PaymentView(TitleMxin, CreateView):
     model = PaymentData
     template_name = 'payment.html'
     form_class = PaymentForm
     success_url = reverse_lazy('users:profile')
+    title = 'Payment'
 
 
     def form_valid(self, form):

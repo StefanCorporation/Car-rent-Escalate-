@@ -67,8 +67,7 @@ class UserProfileForm(UserChangeForm):
 
 
 
-class RentDataForm(forms.ModelForm):
-    
+class RentDataForm(forms.ModelForm):   
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))

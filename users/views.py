@@ -83,8 +83,6 @@ class PaymentView(TitleMxin, CreateView):
         rent_data.paid = True
         rent_data.save()
 
-
-
         return super().form_valid(form)
 
 

@@ -8,7 +8,8 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('escalate_rent/', include('vehicles.urls')),
     path('escalate_rent/', include('users.urls')),
-    path('escalate_rent/', include('api.urls'))
+    path('escalate_rent/', include('api.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 

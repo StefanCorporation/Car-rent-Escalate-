@@ -16,12 +16,14 @@ class HomeView(TitleMxin, ListView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['vehicles'] = VehiclesForRent.objects.filter(available=True)
+        context['discount_vehicles'] = VehiclesForRent.objects.filter(discount=True)
         return context
 
 
 class ContactView(TitleMxin, TemplateView):
     template_name = 'contact.html'
     title = 'Contact'
+
 
 
 

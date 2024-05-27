@@ -37,13 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'vehicles.apps.VehiclesConfig',
     'users.apps.UsersConfig',
     'api.apps.ApiConfig',
 
-    'rest_framework'
-]
+    'rest_framework',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.github'
+]   
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,7 +63,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
+
 
 ROOT_URLCONF = 'rent.urls'
 
@@ -134,7 +146,48 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Users
-
 AUTH_USER_MODEL = 'users.Users'
 LOGIN_REDIRECT_URL = '/escalate_rent/home/'
 LOGOUT_REDIRECT_URL = '/escalate_rent/home/'
+
+
+# Oauth
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1 
+
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+            'email',
+        ],
+        'APP': {
+            'client_id':'Ov23liayntb7DFlGiiee',
+            'secret':'478c5cdecf6039c9daa41be41b8d3710154d7a0c',
+            'key': ''
+        }
+    },
+
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+    
+}

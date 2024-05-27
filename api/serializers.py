@@ -7,7 +7,10 @@ from users.models import RentData, Users, PaymentData
 class UsersSerializers(serializers.ModelSerializer):
     class Meta:
         model = Users
-        fields = '__all__' 
+        fields = [
+            'id', 'password', 'last_login', 'username', 'first_name',
+            'last_name', 'email', 'image'
+        ]
 
 
 

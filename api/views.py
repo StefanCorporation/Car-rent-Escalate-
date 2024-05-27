@@ -1,13 +1,12 @@
-from django.shortcuts import render
-from rest_framework import generics
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAdminUser, IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 
 from vehicles.models import VehiclesForRent
 from users.models import RentData, Users, PaymentData
 
 from api.serializers import VehiclesForRentSerializer, RentDataSerializer, UsersSerializers, PaymentSerializer
 from api.permissions import IsAdminOrReadOnly
+
 
 class UsersViewSet(ModelViewSet):
     queryset = Users.objects.all()
@@ -33,6 +32,10 @@ class VehiclesForRentViewSet(ModelViewSet):
 class RentDataViewSet(ModelViewSet):
     queryset = RentData.objects.all()
     serializer_class = RentDataSerializer
+
+  
+
+
 
     # Only admin has all permissions to (GET, POST, PUT, DELETE) or read ALL data!
     # Each authorized user only has access to personal information and can change it use (GET, POST, PUT, DELETE)

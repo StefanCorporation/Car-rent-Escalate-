@@ -62,6 +62,7 @@ class PaymentDataViewSet(ModelViewSet):
         
         rent_data.paid = True
         rent_data.save()
+        
 
 
     # Only admin has all permissions to (GET, POST, PUT, DELETE) or read ALL data!
@@ -73,3 +74,5 @@ class PaymentDataViewSet(ModelViewSet):
             user_id = self.request.user.id
            
         return PaymentData.objects.filter(rent_data__user = user_id)
+
+
